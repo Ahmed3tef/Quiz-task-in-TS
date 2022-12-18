@@ -2,18 +2,18 @@
 
 - To start the app open terminal in main file and do these steps in order:
 
-1- cd server
-2- tsc
-3- npm install
-4- npm start
+- 1- cd server
+- 2- tsc
+- 3- npm install
+- 4- npm start
 
 - at this point our server is running.
 
 - open new terminal
 
-1- cd client
-2- npm install
-3- npm start
+- 1- cd client
+- 2- npm install
+- 3- npm start
 
 - at this point our server is running.
 
