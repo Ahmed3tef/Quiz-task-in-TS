@@ -7,7 +7,7 @@ const App = () => {
   return (
     <main>
       <Routes>
-        <Route path='/' element={<Navigate to='/quizzes' />} />
+        <Route path='/*' element={<Navigate to='/quizzes' />} />
         <Route path='/quizzes' element={<Quizzes />} />
       </Routes>
     </main>
