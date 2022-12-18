@@ -9,35 +9,54 @@ const Quiz: FC<{
   const inCorrectMsg = 'Incorrect answer 😔';
   const correctMsg = 'Good job 🎉👏';
 
+  // question number state
   const [qNumber, setQNumber] = useState<number>(1);
+
+  // isSelected to handle showing btns or msg
   const [isSelected, setIsSelected] = useState<boolean>(false);
+
+  // state to show view results btn.
   const [showResults, setShowResults] = useState<boolean>(false);
 
+  // msg state
   const [answerStatus, setAnswerStatus] = useState<string>(inCorrectMsg);
 
+  // correct answers state
+  const [correctAnswers, setCorrectAnswers] = useState<number>(0);
+
   const nextQHandler = () => {
+    // to stop increasing number if it reaches the end of qs list.
     if (props.data.length === qNumber) return;
 
+    // increase number and reset other states
     setQNumber(prev => prev + 1);
     setIsSelected(false);
     setAnswerStatus(inCorrectMsg);
   };
 
   const answerHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+    // to show msg instead of btns
     setIsSelected(true);
 
+    // i stored the value of q answer in btn value and here I check for equality
     if (e.currentTarget.value === props.data[qNumber - 1].pos) {
       setAnswerStatus(correctMsg);
-      props.setScore(prev => prev + 10);
-      return;
+      // increase correct answers
+      setCorrectAnswers(prev => prev + 1);
     }
   };
 
   useEffect(() => {
+    // when reaches the final q show view results btn
     if (props.data.length === qNumber) {
       setShowResults(true);
     }
   }, [qNumber]);
+
+  useEffect(() => {
+    // set score
+    props.setScore((correctAnswers / props.data.length) * 100);
+  }, [correctAnswers]);
 
   return (
     <div className='questions-container'>

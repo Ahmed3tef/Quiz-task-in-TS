@@ -10,7 +10,10 @@ export const store = configureStore({
   },
 });
 
+// we must define these here to be able to work with redux store and get its state from outside with typescript
+
 export type RootState = ReturnType<typeof store.getState>;
+
 export type AppDispatch = typeof store.dispatch;
 
 export const useAppDispatch: () => AppDispatch = useDispatch;
