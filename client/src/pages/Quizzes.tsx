@@ -11,13 +11,9 @@ const Quizzes = () => {
   const [score, setScore] = useState<number>(0);
   const [showRank, setShowRank] = useState<boolean>(false);
 
-  const words = useAppSelector(state => state.words.words);
-  const wordsError = useAppSelector(state => state.words.error);
-  const wordsIsLoading = useAppSelector(state => state.words.isLoading);
-
-  const rank = useAppSelector(state => state.rank.rank);
-  const rankError = useAppSelector(state => state.rank.error);
-  const rankIsLoading = useAppSelector(state => state.rank.isLoading);
+  const {words, error: wordsError, isLoading: wordsIsLoading } = useAppSelector(state => state.words);
+  const {rank, error: rankError, isLoading: rankIsLoading } = useAppSelector(state => state.rank);
+  
 
   useEffect(() => {
     dispatch(loadWords());
